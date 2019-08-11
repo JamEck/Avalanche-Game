@@ -73,7 +73,7 @@ Window::Window(int hpix, int wpix, int ypos, int xpos)
 :h(hpix),  w(wpix),  y(ypos),  x(xpos){
     length = w*h;
     
-    win  = SDL_CreateWindow("Avalanche v1.1",x,y,w,h,SDL_WINDOW_SHOWN);
+    win  = SDL_CreateWindow("Avalanche v1.2",x,y,w,h,SDL_WINDOW_SHOWN);
     ren  = SDL_CreateRenderer(win, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_SetRenderDrawColor(ren, 0x00, 0x00, 0x00, 0xFF);
     SDL_RenderClear(ren);

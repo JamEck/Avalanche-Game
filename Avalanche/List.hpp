@@ -438,7 +438,6 @@ void List<T>::remove(int index){
 }
 template <typename T>
 void List<T>::remove(T* inp){
-    using namespace std;
     if(!isempty()){
         if(&(head->data) == inp){ // check first node
             popFront();

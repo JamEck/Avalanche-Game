@@ -9,7 +9,7 @@
 #include "Player.hpp"
 #include "Text.hpp"
 
-using namespace std;
+// v1.2
 
 int main(){
     GameManager gm;
