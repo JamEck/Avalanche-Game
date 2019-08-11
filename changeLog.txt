@@ -28,7 +28,7 @@ Planned:
 - Added GameManager class.
 	Code is much cleaner
 	Written so as to scale up more easily for more players.
-
+- added changeLog.txt and README.md
 Planned:
 - Border in middle of screen
 	make screen wrapping less ugly in 2-player
