@@ -60,6 +60,8 @@ public:
     void setNumberOfPanes(int num);
     void setDims();
     int  getPaneWidth();
+    int  getNumOfPanes();
+    void drawDividers();
 };
 
 class Window{
@@ -81,7 +83,7 @@ public:
     void resize(int width, int height);
     
     PaneManager pm;
-    
+
 //    Camera cam;
     void clear(Uint32 color = 0x000000FF);
     void clear(Pixel  p     = 0x000000FF);

@@ -136,10 +136,10 @@ void BlockManager::update(int spawnHeight){
 void BlockManager::display(){
     lava.display(*win);
     ground.display(*win);
-    for(auto iter = falling.getIter(); !iter.atEnd(); iter.next()){
+    foreach(falling){
         iter.data().display(*win);
     }
-    for(auto iter = grounded.getIter(); !iter.atEnd(); iter.next()){
+    foreach(grounded){
         iter.data().display(*win);
     }
 }

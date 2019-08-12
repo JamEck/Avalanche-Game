@@ -6,6 +6,15 @@
 #define NODE List<T>::Node
 #define ITER List<T>::Iterator
 
+#define foreach(listName) \
+for(auto iter = listName.getIter(); !iter.atEnd(); iter.next())
+
+#define foreach2(listName1, listName2) \
+auto iter1 = listName1.getIter(); \
+auto iter2 = listName2.getIter(); \
+for(; !(iter1.atEnd() || iter2.atEnd()); \
+iter1.next(), iter2.next())
+
 template <typename T>
 class List{
 private:

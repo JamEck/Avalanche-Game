@@ -337,6 +337,7 @@
 				);
 				LD_RUNPATH_SEARCH_PATHS = ../Frameworks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
 			};
 			name = Debug;
 		};
@@ -349,6 +350,7 @@
 				);
 				LD_RUNPATH_SEARCH_PATHS = ../Frameworks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYMROOT = build;
 			};
 			name = Release;
 		};

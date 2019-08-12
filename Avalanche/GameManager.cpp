@@ -64,6 +64,7 @@ void GameManager::toggle2Player(){
         p.defaultColor = 0x7F7F7FFF;
         p.color = 0x7F7F7FFF;
         p.pos = players.front().pos;
+
     }else{
         remPlayer();
         remKeyboard();
@@ -76,7 +77,7 @@ void GameManager::toggle2Player(){
 
 float GameManager::maxHeightOfPlayers(){
     float ans = 0;
-    for(auto iter = players.getIter(); !iter.atEnd(); iter.next()){
+    foreach(players){
         if(iter.data().pos.y > ans){
             ans = iter.data().pos.y;
         }
@@ -85,37 +86,30 @@ float GameManager::maxHeightOfPlayers(){
 }
 
 void GameManager::fillBgcs(){
-    Uint32 colors[] = {0x7F4411FF, 0x7F5F00FF, 0x7F0000FF, 0x7F007FFF, 0x00007FFF, 0xFF};
-    int num = sizeof(colors)/4;
+    Uint32 colors[] = {0x5f6F9FFF, 0xAF5F00FF, 0x7F0000FF, 0x5F005FFF, 0x00006FFF, 0xFF};
+    bgcolen = sizeof(colors)/4;
     
     if(bgcs) delete [] bgcs;
-    bgcs = new Uint32[num];
+    bgcs = new Uint32[bgcolen];
     
-    for(int i = 0; i < num; i++){
+    for(int i = 0; i < bgcolen; i++){
         bgcs[i] = colors[i];
     }
 }
 
 void GameManager::getBackgroundColor(){
-    if(playerheight < tierHeight){
-        background = Pixel::interpolate(bgcs[0], bgcs[1], playerheight/tierHeight);
-    }else
-    if(playerheight < tierHeight*2){
-        background = Pixel::interpolate(bgcs[1], bgcs[2], (playerheight-tierHeight)/tierHeight);
-    }else
-    if(playerheight < tierHeight*3){
-        background = Pixel::interpolate(bgcs[2], bgcs[3], (playerheight-tierHeight*2)/tierHeight);
-    }else
-    if(playerheight < tierHeight*4){
-        background = Pixel::interpolate(bgcs[3], bgcs[4], (playerheight-tierHeight*3)/tierHeight);
-    }else
-    if(playerheight < tierHeight*5){
-        background = Pixel::interpolate(bgcs[4], bgcs[5], (playerheight-tierHeight*4)/tierHeight);
+    float height = playerheight;
+    for(int i = 0; i < bgcolen-1; i++){
+        if(height < tierHeight){
+            background = Pixel::interpolate(bgcs[i], bgcs[i+1], height/tierHeight);
+            break;
+        }
+        height -= tierHeight;
     }
 }
 
 void GameManager::updatePlayers(){
-    for(auto iter = players.getIter(); !iter.atEnd(); iter.next()){
+    foreach(players){
         iter.data().move(win);
         iter.data().update(bm);
     }
@@ -123,38 +117,36 @@ void GameManager::updatePlayers(){
 }
 
 void GameManager::displayPlayers(){
-    for(auto iter = players.getIter(); !iter.atEnd(); iter.next()){
+    foreach(players){
         iter.data().display(win);
     }
+    //displayPlayerInfo();
 }
 
 void GameManager::displayScore(){
-    auto paneIter   = win.pm.panes.getIter();
-    auto playerIter =      players.getIter();
-    
-    for(; !(paneIter.atEnd() || playerIter.atEnd());
-            paneIter.next()  ,  playerIter.next()){
-        Player& player = playerIter.data();
-        Pane&   pane   =   paneIter.data();
-        
-        Text::dispInt(win, player.highest, 10, pane.pos.x + 10, 4, 0xFFFFFF00 - background.val);
+    foreach2(players, win.pm.panes){
+        Text::dispInt(win, iter1.data().highest, 10, iter2.data().pos.x + 10, 4, 0xFFFFFF00 - background.val);
     }
 }
 
+void GameManager::displayPlayerInfo(){
+    foreach2(players, win.pm.panes){
+        Player& p  = iter1.data();
+        Pane& pane = iter2.data();
+        
+        Text::dispInt(win, p.pos.x, 40, pane.pos.x + 10, 3, 0xFFFFFF00 - background.val);
+    }
+}
 
 void GameManager::updateCameras(){
-    auto piter = players.getIter();
-    for(auto iter = win.pm.panes.getIter();
-        !iter.atEnd() && !piter.atEnd();
-        iter.next(), piter.next()){
-        
-        iter.data().pos.y = -piter.data().pos.y + win.h/3;
+    foreach2(win.pm.panes, players){
+        iter1.data().pos.y = -iter2.data().pos.y + win.h/3;
     }
 }
 
 void GameManager::deathHandling(){
     int numOnGround = 0;
-    for(auto iter = players.getIter(); !iter.atEnd(); iter.next()){
+    foreach(players){
         Player& p = iter.data();
         if(p.dead){
             p.inair = true;
@@ -166,7 +158,7 @@ void GameManager::deathHandling(){
     }
     if(numOnGround == numOfPlayers){
         bm.reset();
-        for(auto iter = players.getIter(); !iter.atEnd(); iter.next()){
+        foreach(players){
             Player& p = iter.data();
             if(p.dead){
                 p.klok.setAlarm(1.0);
@@ -175,7 +167,7 @@ void GameManager::deathHandling(){
         }
         
     }
-    for(auto iter = players.getIter(); !iter.atEnd(); iter.next()){
+    foreach(players){
         Player& p = iter.data();
         if(p.klok.checkAlarm()){
             p.color = p.defaultColor;

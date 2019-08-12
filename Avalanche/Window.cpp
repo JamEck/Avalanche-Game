@@ -68,12 +68,26 @@ void PaneManager::setDims(){
 int PaneManager::getPaneWidth(){
     return paneWidth;
 }
+int PaneManager::getNumOfPanes(){
+    return numOfPanes;
+}
+
+void PaneManager::drawDividers(){
+    foreach(panes){
+        Pane& p = iter.data();
+        if(p.pos.x){
+            SDL_Rect r = {(int)p.pos.x-2, 0, 4, win->h};
+            SDL_SetRenderDrawColor(win->ren, 0, 0, 0, 0xFF);
+            SDL_RenderFillRect(win->ren, &r);
+        }
+    }
+}
 
 Window::Window(int hpix, int wpix, int ypos, int xpos)
 :h(hpix),  w(wpix),  y(ypos),  x(xpos){
     length = w*h;
     
-    win  = SDL_CreateWindow("Avalanche v1.2",x,y,w,h,SDL_WINDOW_SHOWN);
+    win  = SDL_CreateWindow("Avalanche v1.3",x,y,w,h,SDL_WINDOW_SHOWN);
     ren  = SDL_CreateRenderer(win, 0, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_SetRenderDrawColor(ren, 0x00, 0x00, 0x00, 0xFF);
     SDL_RenderClear(ren);
@@ -234,6 +248,9 @@ void Window::drawLine(int x1, int y1, int x2, int y2, Uint32 color){
 
 
 void Window::update(){
+    if(pm.getNumOfPanes() > 1){
+        pm.drawDividers();
+    }
     blit(surf, 0, 0);
     SDL_RenderPresent(ren);
     SDL_FillRect(surf, nullptr, 0x0);

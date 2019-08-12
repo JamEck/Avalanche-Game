@@ -110,12 +110,30 @@ Block::URDL Block::stopOnEdge(Block& b){
 }
 
 void Block::display(Window& win){
-    for(auto iter = win.pm.panes.getIter(); !iter.atEnd(); iter.next()){
+    int pw = win.pm.getPaneWidth();
+    foreach(win.pm.panes){
         Pane& p = iter.data();
-        rect.w = w;
-        rect.h = -h;
-        rect.x = pos.x + p.pos.x - p.cam.pos.x;
+
+        rect.x =  pos.x + p.pos.x - p.cam.pos.x;
         rect.y = -pos.y - p.pos.y + p.cam.pos.y;
+
+        rect.w =  w;
+        if(pos.x < 0){
+            if(pos.x > - w){
+                rect.w  = w + pos.x;
+                rect.x -= pos.x;
+            }else{
+                rect.w = 0;
+            }
+        }else
+        if (right() > pw){
+            if(pos.x < pw){
+                rect.w = pw - pos.x;
+            }else{
+                rect.w = 0;
+            }
+        }
+        rect.h = -h;
     
         SDL_SetRenderDrawColor(win.ren,
                                color.r, color.g, color.b, color.a);

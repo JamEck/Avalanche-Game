@@ -4,6 +4,7 @@
 #include <iostream>
 #include "BlockManager.hpp"
 #include "Timer.hpp"
+#include "Text.hpp"
 
 class Player : public Block{
 private:
@@ -28,6 +29,7 @@ public:
 
     void assignKeyboard(Keyboard& k);
     void platformingMove();
+    void printPosition(Window& win);
 };
 
 

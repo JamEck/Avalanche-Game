@@ -28,13 +28,15 @@ public:
     int numOfPlayers = 0;
     float highScore = 0;
     
-    int tierHeight = 1000;
+    int tierHeight = 5000;
     
     float playerheight = 0;
     
     Uint32* bgcs = nullptr;
+    int bgcolen = 0;
     Pixel background;
 
+    
 //public:
     
     GameManager();
@@ -61,6 +63,7 @@ public:
     void deathHandling();
 
     void displayScore();
+    void displayPlayerInfo();
 };
 
 #endif /* GameManager_hpp */

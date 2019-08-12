@@ -4,32 +4,54 @@
 	Press comma to add second player
 	p1 controls: WASD  keys to move, space to jump
 	p2 controls: arrow keys to move, comma to jump
-- Land on top or cling to the walls of blocks to regain a jump.
+- Land on top or cling to the walls of blocks to regain a jump
 
 Planned:
 - Ability to lose/die
 - Rising lava
-- Ability to be crushed.
+- Ability to be crushed
 
 //////// v1.1 ////////
-- Background smoothly changes color with player 1's height.
+- Background smoothly changes color with player 1's height
 - Added ability to die
 	Upon death, players turn dark red
 	Collision detection ceases
 	Once both players die and fall to ground, game resets after 1 sec
 - Added black ground at y = 0
-- Added rising lava which kills.
-- Added score display for p1 and p2.
+- Added rising lava which kills
+- Added ability to be crushed by falling blocks
+- Added score display for p1 and p2
 
 Planned:
 - Clean main.cpp by moving all code into a GameManager class
 
 //////// v1.2 ////////
-- Added GameManager class.
+- Press 2 to toggle player 2 on and off
+- Added GameManager class
 	Code is much cleaner
-	Written so as to scale up more easily for more players.
-- added changeLog.txt and README.md
+	Written so as to scale up more easily for more players
+- Added changeLog.txt and README.md
+
 Planned:
 - Border in middle of screen
-	make screen wrapping less ugly in 2-player
+	Make screen wrapping less ugly in 2-player
 
+//////// v1.3 ////////
+- Cleaned up code
+- Changed background colors
+- Background colors change more gradually
+	Black arrives at score of 25k
+- Screen wrapping is much cleaner
+- Border between panes for aesthetics
+- Added function to display x pos (off for release)
+
+Files:
+- Added in Resources folder with text images
+- Added release build to repo
+- Added zipped mac app
+
+Planned:
+- Add bomb block that explodes on contact
+	Either kills or just launches player.
+- Add infrequently-spawning fast-falling block
+- Add local leaderboard
