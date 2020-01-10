@@ -10,7 +10,7 @@ Player::Player(){
     props.airdrag = 0.8;
     props.thrust = 1;
     props.airThrust = 0.3;
-    props.grav = 0.12;
+    props.grav = 0.13;
     props.ffgrav = 0.5;
     inair = false;
     ffall = false;
@@ -20,18 +20,18 @@ Player::Player(){
     dead = false;
 }
 
-void Player::wrapPos(Window& win){
-    if(pos.x > win.pm.getPaneWidth()){
+void Player::wrapPos(){
+    if(pos.x > Window::pm.getPaneWidth()){
         pos.x = -w;
     }
     if(pos.x < -w){
-        pos.x = win.pm.getPaneWidth();
+        pos.x = Window::pm.getPaneWidth();
     }
 }
 
-void Player::move(Window& win){
+void Player::move(){
     platformingMove();
-    wrapPos(win);
+    wrapPos();
 }
 
 void Player::groundCollide(Block& lava){

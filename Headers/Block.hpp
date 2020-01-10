@@ -12,7 +12,7 @@ protected:
 public:
     enum URDL{UP, RIGHT, DOWN, LEFT};
 
-    Pixel color;
+    Color color;
     int w, h;
     
     Block(int size = 10);
@@ -44,8 +44,8 @@ public:
 
     void update();
     
-    void display(Window& win);
-    void displayAbsolute(Window& win);
+    void display();
+    void displayAbsolute();
     
 };
 

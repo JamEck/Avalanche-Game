@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "Window.hpp"
 #include "BlockManager.hpp"
 #include "EventManager.hpp"
@@ -9,14 +9,21 @@
 #include "Player.hpp"
 #include "Text.hpp"
 
-// v1.3
+// v1.4
 
-int main(){
+void cleanUp(){
+    Window::free();
+    SDL_Quit();
+}
+
+int main(int argc, char* argv[]){
+    printf("Start of Game!\n");
     GameManager gm;
     while(!gm.em.quit){
         if(gm.fps.limit()){
             gm.update();
         }
     }
-    SDL_Quit();
+    cleanUp();
+    return 0;
 }

@@ -5,7 +5,7 @@ Block::Block(int size){
     rect.x = 0; rect.y = 0;
          w = size;   h = size;
     rect.w = w; rect.h = h;
-    color = {0xff,0xff,0xff};
+    color  = 0xffffffff;
 }
 
 Block::Block(Block& inp){
@@ -109,9 +109,9 @@ Block::URDL Block::stopOnEdge(Block& b){
     }
 }
 
-void Block::display(Window& win){
-    int pw = win.pm.getPaneWidth();
-    foreach(win.pm.panes){
+void Block::display(){
+    int pw = Window::pm.getPaneWidth();
+    foreach(Window::pm.panes){
         Pane& p = iter.data();
 
         rect.x =  pos.x + p.pos.x - p.cam.pos.x;
@@ -135,19 +135,20 @@ void Block::display(Window& win){
         }
         rect.h = -h;
     
-        SDL_SetRenderDrawColor(win.ren,
-                               color.r, color.g, color.b, color.a);
-        SDL_RenderFillRect(win.ren, &rect);
+        SDL_SetRenderDrawColor(Window::getRen(),
+            color.r, color.g, color.b, color.a
+        );
+        SDL_RenderFillRect(Window::getRen(), &rect);
     }
     
 }
 
-void Block::displayAbsolute(Window& win){
+void Block::displayAbsolute(){
     rect.w = w;
     rect.h = h;
     rect.x = pos.x;
     rect.y = pos.y;
 
-    SDL_SetRenderDrawColor(win.ren,color.r, color.g, color.b, color.a);
-    SDL_RenderFillRect(win.ren, &rect);
+    SDL_SetRenderDrawColor(Window::getRen(),color.r, color.g, color.b, color.a);
+    SDL_RenderFillRect(Window::getRen(), &rect);
 }

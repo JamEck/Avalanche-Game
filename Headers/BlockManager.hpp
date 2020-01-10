@@ -15,8 +15,7 @@ private:
 //    };
     
     FpsLimiter bps;
-    Window* win = nullptr;
-    
+
     List<Block> falling;
     List<Block> grounded;
     
@@ -28,11 +27,9 @@ public:
     Block lava;
     
     BlockManager();
-    BlockManager(Window& winref);
     ~BlockManager();
 
     
-    void bindWindow(Window& winref);
     void spawnBlock(int spawnHeight);
     
     void land(Block& b, float y);

@@ -13,13 +13,13 @@ private:
     Keyboard* k = nullptr;
 
 public:
-    Pixel defaultColor = 0xFFFFFFFF;
+    Color defaultColor = 0xFFFFFFFF;
     int highest = 0;
     Timer klok;
     bool dead;
     Player();
-    void wrapPos(Window&);
-    void move(Window&);
+    void wrapPos();
+    void move();
     
     void groundCollide(Block& lava);
     bool collide(BlockManager&);
@@ -29,7 +29,6 @@ public:
 
     void assignKeyboard(Keyboard& k);
     void platformingMove();
-    void printPosition(Window& win);
 };
 
 

@@ -43,8 +43,12 @@ void EventManager::update(){
                 quit = true;
                 break;
             }
+            if(e.key.keysym.sym == SDLK_1){
+                playerRem.down = true;
+                break;
+            }else
             if(e.key.keysym.sym == SDLK_2){
-                p2Toggle.down = true;
+                playerAdd.down = true;
                 break;
             }
             
@@ -54,8 +58,12 @@ void EventManager::update(){
             
         }
         if(e.type == SDL_KEYUP){
+            if(e.key.keysym.sym == SDLK_1){
+                playerRem.down = false;
+                break;
+            }else
             if(e.key.keysym.sym == SDLK_2){
-                p2Toggle.down = false;
+                playerAdd.down = false;
                 break;
             }
             
@@ -63,7 +71,8 @@ void EventManager::update(){
             pk2 &&  updateKey(&e, pk2, false);
         }
     }
-    p2Toggle.update();
+    playerRem.update();
+    playerAdd.update();
     if(pk1) pk1->update();
     if(pk2) pk2->update();
 }

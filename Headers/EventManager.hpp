@@ -2,7 +2,7 @@
 #define EventManager_hpp
 
 #include <stdio.h>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 #include "Keyboard.hpp"
 
 class EventManager{
@@ -14,7 +14,8 @@ private:
     bool updateKey(SDL_Event* e, Keyboard* k, bool press);
 public:
     bool quit = false;
-    Button p2Toggle;
+    Button playerAdd;
+    Button playerRem;
     EventManager();
     ~EventManager();
     

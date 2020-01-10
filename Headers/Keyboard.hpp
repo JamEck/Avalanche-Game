@@ -2,8 +2,7 @@
 #define Keyboard_hpp
 
 #include <stdio.h>
-#include "bool2.hpp"
-#include "Button.hpp"
+#include "Utils.hpp"
 
 #define K Keyboard
 

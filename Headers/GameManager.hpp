@@ -18,13 +18,13 @@
 
 class GameManager{
 public:
-    Window win;
     BlockManager bm;
     List<Keyboard> keyboards;
     EventManager em;
     List<Player> players;
     FpsLimiter fps;
 
+    int playerLimit = 10;
     int numOfPlayers = 0;
     float highScore = 0;
     
@@ -34,7 +34,7 @@ public:
     
     Uint32* bgcs = nullptr;
     int bgcolen = 0;
-    Pixel background;
+    Color background;
 
     
 //public:
@@ -46,10 +46,12 @@ public:
     
     void addKeyboard(unsigned int* bindings);
     void remKeyboard();
-    void addPlayer(Keyboard& k);
+    void addPlayer();
     void remPlayer();
     void toggle2Player();
-    
+    void toggle3Player();
+    void setNumberOfPlayers(int num);
+
     float maxHeightOfPlayers();
     
     void fillBgcs();
@@ -62,7 +64,7 @@ public:
     
     void deathHandling();
 
-    void displayScore();
+    void displayScore(float scale = 4.0f);
     void displayPlayerInfo();
 };
 

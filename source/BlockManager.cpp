@@ -5,21 +5,11 @@
 
 BlockManager::BlockManager(){
     srand(time(NULL));
-    bps.setTargetFps(2);
-}
-
-BlockManager::BlockManager(Window& winref):win(&winref){
-    srand(time(NULL));
-    bps.setTargetFps(2);
+    bps.setTargetFps(4);
     reset();
 }
 
 BlockManager::~BlockManager(){
-}
-
-void BlockManager::bindWindow(Window &winref){
-    win = &winref;
-    reset();
 }
 
 void BlockManager::spawnBlock(int spawnHeight){
@@ -31,14 +21,14 @@ void BlockManager::spawnBlock(int spawnHeight){
     Block& b = falling.back();
     b.w = (rand()%2)?60:80;
     b.h = b.w;
-    b.pos.x = rand() % (win->pm.getPaneWidth() - b.w);
-    b.pos.y = highest + win->h;
-    b.vel.y = -(rand()%2+2);
+    b.pos.x = rand() % (Window::pm.getPaneWidth() - b.w);
+    b.pos.y = highest + Window::height();
+    b.vel.y = -((rand()%20)/10.0+3);
     
     b.inair = true;
     
     for(int i = 1; i < 4; i++){ // skip alpha
-        b.color.abgr[i] = rand()%200 + 55;
+        b.color.channel[i] = rand()%200 + 55;
     }
 }
 
@@ -134,13 +124,13 @@ void BlockManager::update(int spawnHeight){
 }
 
 void BlockManager::display(){
-    lava.display(*win);
-    ground.display(*win);
+    lava.display();
+    ground.display();
     foreach(falling){
-        iter.data().display(*win);
+        iter.data().display();
     }
     foreach(grounded){
-        iter.data().display(*win);
+        iter.data().display();
     }
 }
 
@@ -153,21 +143,21 @@ List<Block>& BlockManager::getGrounded(){
 
 
 void BlockManager::reset(){
-    highest = win->h + 10;
+    highest = Window::height() + 10;
     falling .wipe();
     grounded.wipe();
     
     lavaspeed = 0.8;
-    lava.pos = {0,-600};
+    lava.pos = {0,-800};
     ground.pos = {0,0};
     
-    lava.w   = win->pm.getPaneWidth();
-    ground.w = win->pm.getPaneWidth()-10;
+    lava.w   = Window::pm.getPaneWidth();
+    ground.w = Window::pm.getPaneWidth()-10;
     
-    lava.h = -win->h/2;
-    ground.h = -win->h*2/5;
+    lava.h   = -(int)Window::height()/2;
+    ground.h = -(int)Window::height()*2/5;
     
-    lava.color   = 0xFF0000FF; // red
+    lava.color   = 0xFF3300FF; // red
     ground.color = 0x000000FF; // black
 }
 
