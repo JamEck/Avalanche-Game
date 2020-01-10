@@ -1,4 +1,6 @@
 .DS_Store
-Build
-Debug
-Release/Avalanche.dSYM
+Builds/*/*/intermediates/
+Builds/*/*/*
+!Builds/*/*/Avalanche.exe
+!Builds/*/*/SDL2.dll
+.vs

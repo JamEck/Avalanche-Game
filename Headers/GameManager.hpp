@@ -24,7 +24,8 @@ public:
     List<Player> players;
     FpsLimiter fps;
 
-    int playerLimit = 10;
+
+    int playerLimit = 3;
     int numOfPlayers = 0;
     float highScore = 0;
     

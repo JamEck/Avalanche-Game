@@ -55,3 +55,19 @@ Planned:
 	Either kills or just launches player.
 - Add infrequently-spawning fast-falling block
 - Add local leaderboard
+
+//////// v1.4 ////////
+- Windows x86 and x64 builds
+- Changed window size
+- Up to 10 player split screen supported lol
+- Speed of blocks and gravity tweaked
+
+Files:
+- Split Code Base Into Headers/ and Source/ Directories
+
+Planned:
+- Fix Graphical Issue
+- Add bomb block that explodes on contact
+	Either kills or just launches player.
+- Add infrequently-spawning fast-falling block
+- Add local leaderboard
