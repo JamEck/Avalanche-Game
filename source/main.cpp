@@ -1,5 +1,5 @@
 #include <iostream>
-#include <SDL.h>
+#include "SDL2.hpp"
 #include "Window.hpp"
 #include "BlockManager.hpp"
 #include "EventManager.hpp"

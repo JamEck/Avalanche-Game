@@ -1,14 +1,19 @@
 #ifndef Window_hpp
 #define Window_hpp
 
-#include <SDL.h>
+#include "SDL2.hpp"
 #include <stdio.h>
 #include "Utils.hpp"
 #include "Camera.hpp"
 #include "List.hpp"
 
+#ifdef __APPLE__
+#define DEF_WIN_WIDTH  640
+#define DEF_WIN_HEIGHT 840
+#else
 #define DEF_WIN_WIDTH  960
 #define DEF_WIN_HEIGHT 1280
+#endif
 
 extern void initSDL();
 

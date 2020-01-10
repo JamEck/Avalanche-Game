@@ -2,7 +2,7 @@
 #define EventManager_hpp
 
 #include <stdio.h>
-#include <SDL.h>
+#include "SDL2.hpp"
 #include "Keyboard.hpp"
 
 class EventManager{

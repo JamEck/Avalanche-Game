@@ -20,18 +20,17 @@ std::map<char, Image*> Text::load(){
 
     std::map<char, Image*> m;
 
-    char path[50]; // hopefully the name won't be longer than 30 ;)
     int max = sizeof(paths)/sizeof(const char*);
     for(int i = 0; i < max; i++){
 
-        strcpy_s(path, TEXT_ASSETS_PATH); // start with text dir
-        strcat_s(path, paths[i]);         // append image name
-        strcat_s(path, ".bmp");           // append extention
+        Path path(TEXT_ASSETS_PATH); // start with text dir
+        path.push(paths[i]);  // append image name
+        path.append(".bmp"); // append extention
 
         Image* surf = new Image(path);
         surf->setProps(Text::props);
         
-        if(surf->get() == nullptr) printf("Could Not Find Text Asset File: %s\n", path);
+        if(surf->get() == nullptr) printf("Could Not Find Text Asset File: %s\n", path.c_str());
 
         m[chars[i]] = surf;
     }

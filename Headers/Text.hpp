@@ -4,9 +4,10 @@
 #include <map>
 #include "Image.hpp"
 #include "Window.hpp"
+#include "Path.hpp"
 #include <string>
 
-#define TEXT_ASSETS_PATH "../../../Resources/alphabet/"
+#define TEXT_ASSETS_PATH "../../../Resources/alphabet"
 
 class Text{
 public:

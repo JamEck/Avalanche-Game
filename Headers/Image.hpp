@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdint.h>
-#include <SDL.h>
+#include "SDL2.hpp"
 #include "Utils.hpp"
 #include "vec2.hpp"
 #include "Window.hpp"
